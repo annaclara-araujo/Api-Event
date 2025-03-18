@@ -1,6 +1,6 @@
 ﻿namespace Api_Event.Interface
 {
-    public interface IInstituicao
+    public interface IInstituicaoRepository
     {
     }
 }

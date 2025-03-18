@@ -31,7 +31,7 @@ namespace Api_Event.Domains
         [Required(ErrorMessage = "Tipo de Evento obrigatorio")]
         public Guid TipoDeEventoId { get; set; }
 
-        [ForeignKey("TipoDeEvento")]
+        [ForeignKey("TipoDeEventoId")]
         public TipoDeEvento? TipoDeEvento { get; set; }
 
 
@@ -40,7 +40,7 @@ namespace Api_Event.Domains
         [Required(ErrorMessage = "Campo obrigatorio")]
         public Guid InstituicaoId { get; set; }
 
-        [ForeignKey("Instituicao")]
+        [ForeignKey("InstituicaoId")]
         public Instituicao? instituicao { get; set; }
 
         

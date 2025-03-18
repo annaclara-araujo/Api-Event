@@ -33,7 +33,7 @@ namespace Api_Event.Domains
         [Required(ErrorMessage = "Tipo de Usuario obrigatorio")]
         public Guid TipoDeUsuarioId { get; set; }
 
-        [ForeignKey("TipoDeUsuario")]
+        [ForeignKey("TipoDeUsuarioId")]
         public TipoDeUsuario? TipoDeUsuario { get; set; }
         
     }

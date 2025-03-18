@@ -27,7 +27,7 @@ namespace Api_Event.Domains
         [Required(ErrorMessage = "Usuario obrigatorio")]
         public Guid UsuarioId { get; set; }
 
-        [ForeignKey("Usuario")]
+        [ForeignKey("UsuarioId")]
         public Usuario? Usuario { get; set; }
 
 
@@ -36,7 +36,7 @@ namespace Api_Event.Domains
         [Required(ErrorMessage = "Evento obrigatorio")]
         public Guid EventoId { get; set; }
 
-        [ForeignKey("Evento")]
+        [ForeignKey("EventoId")]
         public Evento? Evento { get; set; }
     }
 }
