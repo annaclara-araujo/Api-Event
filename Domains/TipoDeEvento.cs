@@ -13,5 +13,6 @@ namespace Api_Event.Domains
         [Required(ErrorMessage = "O tipo de evento e obrigatorio")]
 
         public string? TituloTipoEvento { get; set; }
+
     }
 }

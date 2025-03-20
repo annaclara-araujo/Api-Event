@@ -15,16 +15,18 @@ namespace Api_Event.Repositories
             _context = context;
         }
 
+
+        //Atualizar
         public void Atualizar(Guid Id, TipoDeEvento tipoDeEvento)
         {
 
             try
             {
-                TipoDeEvento tipoBuscado = _context.TipoDeEventos.Find(Id)!;
+                TipoDeEvento tipoEventoBuscado = _context.TipoDeEventos.Find(Id)!;
 
-                if (tipoBuscado != null)
+                if (tipoEventoBuscado != null)
                 {
-                    tipoBuscado.TituloTipoEvento = tipoDeEvento.TituloTipoEvento;
+                    tipoEventoBuscado.TituloTipoEvento = tipoDeEvento.TituloTipoEvento;
                 }
 
                 _context.SaveChanges();
@@ -36,6 +38,8 @@ namespace Api_Event.Repositories
             }
         }
 
+
+        //Buscar Por Id
         public TipoDeEvento BuscarPorId(Guid Id)
         {
 
@@ -51,11 +55,14 @@ namespace Api_Event.Repositories
             }
         }
 
+
+        //Cadastrar
         public void Cadastrar(TipoDeEvento novoTipoDeEvento)
         {
             try
             {
                 _context.TipoDeEventos.Add(novoTipoDeEvento);
+
                 _context.SaveChanges();
             }
             catch (Exception)
@@ -65,6 +72,8 @@ namespace Api_Event.Repositories
             }
         }
 
+
+        //Deletar
         public void Deletar(Guid Id)
         {
             try
@@ -72,7 +81,6 @@ namespace Api_Event.Repositories
                 TipoDeEvento eventoBuscado = _context.TipoDeEventos.Find(Id)!;
                 if (eventoBuscado != null)
                 { 
-                
                     _context.Remove(eventoBuscado);
                 }
                 _context.SaveChanges();
@@ -84,17 +92,13 @@ namespace Api_Event.Repositories
         }
 
 
-
-
+        //Listar
 
         public List<TipoDeEvento> Listar()
         {
             try
             {
-                List<TipoDeEvento> listaTipoDeEventos = _context.TipoDeEventos
-                     .Include(g => g.TituloTipoEvento)
-                    .ToList();
-
+                List<TipoDeEvento> listaTipoDeEventos = _context.TipoDeEventos.ToList();
                 return listaTipoDeEventos;
             }
             catch (Exception)
@@ -102,6 +106,8 @@ namespace Api_Event.Repositories
 
                 throw;
             }
+
         }
+
     }
 }

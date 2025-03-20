@@ -1,6 +1,8 @@
-﻿using Api_Event.Context;
+﻿using System.Timers;
+using Api_Event.Context;
 using Api_Event.Domains;
 using Api_Event.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace Api_Event.Repositories
 {
@@ -14,6 +16,7 @@ namespace Api_Event.Repositories
         }
 
 
+        //Atualizar
         public void Atualizar(Guid Id, Evento evento)
         {
             try
@@ -35,8 +38,10 @@ namespace Api_Event.Repositories
 
                 throw;
             }
+
         }
 
+        //Buscar Por ID
         public Evento BuscarPorId(Guid Id)
         {
             try
@@ -50,8 +55,10 @@ namespace Api_Event.Repositories
 
                 throw;
             }
+
         }
 
+        //Cadastrar
         public void Cadastrar(Evento novoEvento)
         {
             try
@@ -64,8 +71,11 @@ namespace Api_Event.Repositories
 
                 throw;
             }
+
         }
 
+
+        //Deletar
         public void Deletar(Guid Id)
         {
             try
@@ -85,13 +95,17 @@ namespace Api_Event.Repositories
 
                 throw;
             }
+
         }
 
-        public List<Evento> Listar()
+
+        //Lista De Eventos
+        public List<Evento> Listar(Guid Id)
         {
             try
             {
                 List<Evento> listaDeEventos = _context.Evento.ToList();
+                return listaDeEventos;
 
             }
             catch (Exception)
@@ -101,14 +115,44 @@ namespace Api_Event.Repositories
             }
         }
 
-        public List<Evento> ListarPorId(int id)
+ 
+            //Lista Por ID  
+        public List<Evento> ListarPorId(Guid EventoId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Evento> listaEventoPorId = _context.Evento
+
+                    .Include(g => g.EventoId).Where(f => f.EventoId == EventoId)
+                    .ToList();
+
+                return listaEventoPorId;
+            } 
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
+        //Lista proximos eventos
         public List<Evento> ProximosEventos()
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Evento> listaProximosEventos = _context.Evento.ToList();
+                return listaProximosEventos;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
+
+
+
+
+

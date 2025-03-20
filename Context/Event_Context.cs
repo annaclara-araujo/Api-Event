@@ -28,11 +28,5 @@ namespace Api_Event.Context
             }
 
         }
-
-
-
-
-
-
     }
 }
