@@ -1,5 +1,6 @@
 ﻿using Api_Event.Domains;
 using Api_Event.Interface;
+using Api_Event.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api_Event.Controllers
@@ -69,6 +70,45 @@ namespace Api_Event.Controllers
             }
         
         }
+
+        [HttpGet("BuscarPorId/{id}")]
+        public IActionResult GetById(Guid id)
+        {
+            try
+            {
+                TipoDeEvento tipoDeEventoBuscado = _tipoDeEventoRepository.BuscarPorId(id);
+                return Ok(tipoDeEventoBuscado);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+
+            }
+
+        }
+
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+                return Ok(_tipoDeEventoRepository.Listar());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+
+
+
+
+
+
+
+
 
     }
 }

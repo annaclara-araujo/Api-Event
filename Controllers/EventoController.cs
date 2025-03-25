@@ -1,5 +1,6 @@
 ﻿using Api_Event.Domains;
 using Api_Event.Interface;
+using Api_Event.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -98,8 +99,7 @@ namespace Api_Event.Controllers
 
             try
             {
-                List<Evento> listaDeEvento = _eventoRepository.Listar();
-                return Ok(listaDeEvento);
+                return Ok(_eventoRepository.Listar());
             }
             catch (Exception e)
             {
@@ -108,6 +108,46 @@ namespace Api_Event.Controllers
 
             }
         }
+
+
+        //Listar por Id
+
+        [HttpGet("ListarPorId/{id}")]
+
+        public IActionResult GetByEvento(Guid id)
+        {
+            try
+            {
+                List<Evento> listaEventoId = _eventoRepository.Listar();
+                return Ok(listaEventoId);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        //Lista proximo evento
+
+        [HttpGet("ProximosEventos")]
+        public IActionResult GetByProximo()
+        {
+            try
+            {
+                List<Evento> proximosEventos = _eventoRepository.Listar();
+                return Ok(proximosEventos);
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+
+
+        }
+
+
 
 
     }
@@ -135,4 +175,4 @@ namespace Api_Event.Controllers
 
 
 
-    
+

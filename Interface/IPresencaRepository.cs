@@ -9,6 +9,6 @@ namespace Api_Event.Interface
         void Atualizar (Guid Id, Presenca presenca);
         List<Presenca> Listar();
         Presenca BuscarPorId(Guid Id);
-        List<Presenca> ListarPresencas(Guid Id);
+        List<Presenca> ListarMinhasPresencas(Guid Id);
     }
 }

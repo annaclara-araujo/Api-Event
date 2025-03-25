@@ -19,7 +19,30 @@ namespace Api_Event.Repositories
         //Buscar Por Email e Senha
         public Usuario BuscarPorEmailSenha(string Email, string Senha)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Usuario usuarioBuscado = _context.Usuario
+                .Select(u => new Usuario
+                {
+                    UsuarioId = u.UsuarioId,
+                    NomeUsuario = u.NomeUsuario,
+                    EmailUsuario = u.EmailUsuario,
+                    SenhaUsuario = u.SenhaUsuario,
+
+                    TipoDeUsuario = new TipoDeUsuario
+                    {
+                        TipoDeUsuarioId = u.TipoDeUsuarioId,
+                        TituloTipoUsuario = u.TipoDeUsuario!.TituloTipoUsuario
+
+                    }
+                }).FirstOrDefault(u => u.EmailUsuario == Email)!;
+            
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
 
@@ -29,8 +52,27 @@ namespace Api_Event.Repositories
         {
             try
             {
-                Usuario usuarioBuscado = _context.Usuario.Find(Id)!;
-                return usuarioBuscado;
+                Usuario usuarioBuscado = _context.Usuario
+                    .Select(u => new Usuario
+                    {
+                        UsuarioId = u.UsuarioId,
+                        NomeUsuario= u.NomeUsuario,
+                        EmailUsuario= u.EmailUsuario,
+                        SenhaUsuario = u.SenhaUsuario,
+
+                        TipoDeUsuario =new TipoDeUsuario 
+                        {
+                            TipoDeUsuarioId = u.TipoDeUsuario!.TipoDeUsuarioId,
+                            TituloTipoUsuario = u.TipoDeUsuario!.TituloTipoUsuario
+                        }
+
+                    }).FirstOrDefault(u => u.UsuarioId == Id)!;
+
+                    if(usuarioBuscado == null)
+                {
+                    return usuarioBuscado;
+                }
+                return null!;
             }
             catch (Exception)
             {

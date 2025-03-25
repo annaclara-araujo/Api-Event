@@ -31,6 +31,7 @@ namespace Api_Event.Repositories
                     eventoBuscado.TipoDeEventoId = evento.TipoDeEventoId;
                 }
 
+                _context.Evento.Update(eventoBuscado!);
                 _context.SaveChanges();
             }
             catch (Exception)
@@ -46,13 +47,21 @@ namespace Api_Event.Repositories
         {
             try
             {
-                Evento eventoBuscado = _context.Evento.Find(Id)!;
-
-                return eventoBuscado;
+                return _context.Evento
+                    .Select(e => new Evento
+                    {
+                        EventoId = e.EventoId,
+                        NomeEvento = e.NomeEvento,
+                        DescricaoEvento = e.DescricaoEvento,
+                        DataEvento = e.DataEvento,
+                        TipoDeEvento = new TipoDeEvento
+                        {
+                            TituloTipoEvento = e.TipoDeEvento!.TituloTipoEvento
+                        }
+                    }).FirstOrDefault(e => e.EventoId == Id)!;
             }
             catch (Exception)
             {
-
                 throw;
             }
 
@@ -63,16 +72,25 @@ namespace Api_Event.Repositories
         {
             try
             {
+                // Verifica se a data do evento é maior que a data atual
+                if (novoEvento.DataEvento < DateTime.Now)
+                {
+                    throw new ArgumentException("A data do evento deve ser maior ou igual a data atual.");
+                }
+
+                novoEvento.EventoId = Guid.NewGuid();
+
                 _context.Evento.Add(novoEvento);
+
                 _context.SaveChanges();
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
+    
+        
 
 
         //Deletar
@@ -100,8 +118,11 @@ namespace Api_Event.Repositories
 
 
         //Lista De Eventos
-        public List<Evento> Listar(Guid Id)
+        
+
+        public List<Evento> Listar()
         {
+            
             try
             {
                 List<Evento> listaDeEventos = _context.Evento.ToList();
@@ -115,22 +136,37 @@ namespace Api_Event.Repositories
             }
         }
 
- 
-            //Lista Por ID  
+
+        //Lista Por ID  
         public List<Evento> ListarPorId(Guid EventoId)
         {
             try
             {
-                List<Evento> listaEventoPorId = _context.Evento
-
-                    .Include(g => g.EventoId).Where(f => f.EventoId == EventoId)
+                return _context.Evento
+                    .Include(e => e.Presenca)
+                    .Select(e => new Evento
+                    {
+                        EventoId = e.EventoId,
+                        NomeEvento = e.NomeEvento,
+                        DescricaoEvento = e.DescricaoEvento,
+                        DataEvento = e.DataEvento,
+                        TipoDeEventoId = e.TipoDeEventoId,
+                        TipoDeEvento = new TipoDeEvento
+                        {
+                            TipoDeEventoId = e.TipoDeEventoId,
+                            TituloTipoEvento = e.TipoDeEvento!.TituloTipoEvento
+                        },
+                        Presenca = new Presenca
+                        {
+                            UsuarioId = e.Presenca!.UsuarioId,
+                            Situacao = e.Presenca!.Situacao
+                        }
+                    })
+                    .Where(e => e.Presenca!.Situacao == true && e.Presenca.UsuarioId == Id)
                     .ToList();
-
-                return listaEventoPorId;
-            } 
+            }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -140,12 +176,26 @@ namespace Api_Event.Repositories
         {
             try
             {
-                List<Evento> listaProximosEventos = _context.Evento.ToList();
-                return listaProximosEventos;
+                return _context.Evento
+                    .Select(e => new Evento
+                    {
+                        EventoId = e.EventoId,
+                        NomeEvento = e.NomeEvento,
+                        DescricaoEvento = e.DescricaoEvento,
+                        DataEvento = e.DataEvento,
+                        TipoDeEventoId = e.TipoDeEventoId,
+                        TipoDeEvento = new TipoDeEvento
+                        {
+                           TipoDeEventoId = e.TipoDeEventoId,
+                            TituloTipoEvento = e.TipoDeEvento!.TituloTipoEvento
+                        }
+
+                    })
+                    .Where(e => e.DataEvento >= DateTime.Now)
+                    .ToList();
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

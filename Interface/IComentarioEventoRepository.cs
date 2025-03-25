@@ -11,12 +11,12 @@ namespace Api_Event.Interface
         void Deletar (Guid Id);
 
         //Listar comentario
-        List<ComentarioEvento> Listar (Guid Id);
+        List<ComentarioEvento> Listar();
 
         //Buscar comentario
         ComentarioEvento BuscarPorIdUsuario (Guid UsuarioId, Guid EventoId);
 
-
+        List<ComentarioEvento> ListarSomenteExibe (Guid Id);
 
     }
 }
