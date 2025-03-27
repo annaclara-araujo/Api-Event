@@ -162,7 +162,7 @@ namespace Api_Event.Repositories
                             Situacao = e.Presenca!.Situacao
                         }
                     })
-                    .Where(e => e.Presenca!.Situacao == true && e.Presenca.UsuarioId == Id)
+                    .Where(e => e.Presenca!.Situacao == true && e.Presenca.UsuarioId == EventoId)
                     .ToList();
             }
             catch (Exception)

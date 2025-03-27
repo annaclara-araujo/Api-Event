@@ -1,6 +1,7 @@
 ﻿using Api_Event.Context;
 using Api_Event.Domains;
 using Api_Event.Interface;
+using Api_Event.Utils;
 using Microsoft.AspNetCore.Identity;
 
 namespace Api_Event.Repositories
@@ -36,8 +37,9 @@ namespace Api_Event.Repositories
 
                     }
                 }).FirstOrDefault(u => u.EmailUsuario == Email)!;
-            
+
             }
+
             catch (Exception)
             {
 
@@ -70,7 +72,7 @@ namespace Api_Event.Repositories
 
                     if(usuarioBuscado == null)
                 {
-                    return usuarioBuscado;
+                    return usuarioBuscado!;
                 }
                 return null!;
             }

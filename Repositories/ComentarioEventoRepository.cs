@@ -67,7 +67,7 @@ namespace Api_Event.Repositories
         {
             try
             {
-                ComentarioEvento comentarioEventoBuscado = _context.ComentarioEvento.Find(Id)!;
+                ComentarioEvento comentarioEventoBuscado = _context.ComentarioEvento.Find()!;
 
                 if (comentarioEventoBuscado != null)
                 {
@@ -116,6 +116,11 @@ namespace Api_Event.Repositories
 
                 throw;
             }
+        }
+
+        public List<ComentarioEvento> Listar()
+        {
+            throw new NotImplementedException();
         }
 
         public List<ComentarioEvento> ListarSomenteExibe(Guid Id)

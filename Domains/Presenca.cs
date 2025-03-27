@@ -17,7 +17,7 @@ namespace Api_Event.Domains
         
         [Column(TypeName = "BIT")]
         [Required(ErrorMessage = "Campo obrigatorio!")]
-        public bool? Situacao { get; set; }
+        public bool Situacao { get; set; }
 
         
         

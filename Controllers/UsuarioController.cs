@@ -17,8 +17,13 @@ namespace Api_Event.Controllers
             _usuarioRepository = usuarioRepository;
         }
 
-        [HttpPost]
+        /// <summary>
+        /// Endpoint para cadastrar usuario
+        /// </summary>
+        /// <param name="usuario"></param>
+        /// <returns></returns>
 
+        [HttpPost]
         public ActionResult Post(Usuario usuario)
         {
             try
@@ -35,6 +40,12 @@ namespace Api_Event.Controllers
         }
 
 
+        /// <summary>
+        /// Endpoint para buscar Usuario por Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
         [HttpGet("BuscarPorId/{id}")]
         public IActionResult GetById(Guid id)
         {
@@ -50,30 +61,6 @@ namespace Api_Event.Controllers
             }
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 }

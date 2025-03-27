@@ -21,40 +21,34 @@ namespace Api_Event.Controllers
         }
 
 
-        [HttpPut("{id}")]
-
-        public IActionResult Put(Guid id, TipoDeUsuario tipoDeUsuario)
+        /// <summary>
+        /// Endpoint para atualizar o tipo de usuario
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tipoDeUsuario"></param>
+        /// <returns></returns>
+        [HttpGet("BuscarPorId/{Id}")]
+        public IActionResult GetById(Guid Id)
         {
             try
             {
-                _tipoDeUsuarioRepository.Atualizar(id, tipoDeUsuario);
+                TipoDeUsuario usuarioBuscado = _tipoDeUsuarioRepository.BuscarPorId(Id);
 
-                return NoContent();
+                return Ok(usuarioBuscado);
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
-
         }
 
-        [HttpGet("BuscarPorId/{id}")]
 
-        public IActionResult GetById(Guid id)
-        {
 
-            try
-            {
-                TipoDeUsuario tipoUsuarioBuscado = _tipoDeUsuarioRepository.BuscarPorId(id);
-                return Ok(tipoUsuarioBuscado);
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-
-        }
-
+        /// <summary>
+        /// Endpoint para Cadastrar tipo de usuario
+        /// </summary>
+        /// <param name="novotipoDeUsuario"></param>
+        /// <returns></returns>
         [HttpPost]
 
         public IActionResult Post(TipoDeUsuario novotipoDeUsuario)
@@ -71,24 +65,34 @@ namespace Api_Event.Controllers
             }       
         }
 
-        [HttpDelete]
+        /// <summary>
+        /// Endpoint para deletar tipo de usuario
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
 
-        public IActionResult Delete(Guid id)
+        [HttpDelete("{Id}")]
+        public IActionResult Delete(Guid Id)
         {
-
             try
             {
-                _tipoDeUsuarioRepository.Deletar(id);
+                _tipoDeUsuarioRepository.Deletar(Id);
                 return NoContent();
 
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                return BadRequest(e.Message);
             }
         }
 
+
+
+        /// <summary>
+        /// Endpoint para listar tipo de usuario
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -102,5 +106,22 @@ namespace Api_Event.Controllers
             }
         }
 
+        [HttpPut("{id}")]
+
+        public IActionResult Put(Guid Id, TipoDeUsuario tipoDeUsuario)
+        {
+            try
+            {
+                _tipoDeUsuarioRepository.Atualizar(Id, tipoDeUsuario);
+                return NoContent();
+            }
+            catch (Exception error)
+            {
+                return BadRequest(error.Message);
+            }
+
+        }
+
+
     }
-    }
+}

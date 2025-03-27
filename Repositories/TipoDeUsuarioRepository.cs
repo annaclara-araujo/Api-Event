@@ -11,7 +11,7 @@ namespace Api_Event.Repositories
 
         private readonly Event_Context _context;
 
-        public TipoDeUsuarioRepository (Event_Context context)
+        public TipoDeUsuarioRepository(Event_Context context)
         {
             _context = context;
         }
@@ -40,17 +40,14 @@ namespace Api_Event.Repositories
 
 
         //Buscar Por Id
-        public TipoDeUsuario BuscarPorId(Guid Id)
+        public TipoDeUsuario BuscarPorId(Guid id)
         {
             try
             {
-                TipoDeUsuario tipoUsuarioBuscado = _context.TipoDeUsuario.Find(Id)!;
-
-                return tipoUsuarioBuscado;
+                return _context.TipoDeUsuario.Find(id)!;
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -77,8 +74,9 @@ namespace Api_Event.Repositories
             try
             {
                 TipoDeUsuario tipoDeUsuarioBuscado = _context.TipoDeUsuario.Find(Id)!;
+
                 if (tipoDeUsuarioBuscado != null)
-                { 
+                {
                     _context.TipoDeUsuario.Remove(tipoDeUsuarioBuscado);
                 }
 
@@ -92,12 +90,12 @@ namespace Api_Event.Repositories
         }
 
         //Lista Tipo Evento
-        public List<TipoDeEvento> Listar()
+        public List<TipoDeUsuario> Listar()
         {
             try
             {
-                List<TipoDeEvento> listaTipoDeEvento = _context.TipoDeEventos.ToList();
-                return listaTipoDeEvento;
+                List<TipoDeUsuario> listaTipoDeUsuario = _context.TipoDeUsuario.ToList();
+                return listaTipoDeUsuario;
             }
             catch (Exception)
             {

@@ -46,7 +46,6 @@ namespace Api_Event.Domains
         
         
         
-        
         public Presenca? Presenca { get; set; }
 
     }

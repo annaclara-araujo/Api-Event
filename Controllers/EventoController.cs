@@ -18,10 +18,13 @@ namespace Api_Event.Controllers
             _eventoRepository = eventoRepository;
         }
 
-
+        /// <summary>
+        /// Endpoint para cadastrar novo evento
+        /// </summary>
+        /// <param name="novoEvento"></param>
+        /// <returns></returns>
 
         [HttpPost]
-
         public IActionResult Post(Evento novoEvento)
         {
             try
@@ -36,7 +39,11 @@ namespace Api_Event.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Endpoint para deletar Evento
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
 
         public IActionResult Delete(Guid id)
@@ -54,9 +61,13 @@ namespace Api_Event.Controllers
         }
 
 
-        // Atualizar
+        /// <summary>
+        /// Endpoint para atualizar evento
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="novoEvento"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
-
         public IActionResult Put(Guid id, Evento novoEvento)
         {
             try
@@ -71,10 +82,13 @@ namespace Api_Event.Controllers
         }
 
 
-        //Buscar Por Id
+        /// <summary>
+        /// Endpoint para buscar evento por Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         [HttpGet("BuscarPorId/{id}")]
-
         public IActionResult GetById(Guid id)
         {
             try
@@ -90,13 +104,14 @@ namespace Api_Event.Controllers
         }
 
 
-        //Listar
+        /// <summary>
+        /// Endpoint para listar Evento
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet]
-
         public IActionResult Get()
         {
-
             try
             {
                 return Ok(_eventoRepository.Listar());
@@ -110,7 +125,11 @@ namespace Api_Event.Controllers
         }
 
 
-        //Listar por Id
+        /// <summary>
+        /// Endpoint para Listar evento por Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
 
         [HttpGet("ListarPorId/{id}")]
 
@@ -128,7 +147,10 @@ namespace Api_Event.Controllers
             }
         }
 
-        //Lista proximo evento
+        /// <summary>
+        /// Endpoint para Listar proximos eventos
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet("ProximosEventos")]
         public IActionResult GetByProximo()
@@ -143,15 +165,8 @@ namespace Api_Event.Controllers
 
                 return BadRequest(e.Message);
             }
-
-
         }
-
-
-
-
     }
-
 }
 
 

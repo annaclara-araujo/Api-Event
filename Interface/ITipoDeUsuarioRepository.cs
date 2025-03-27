@@ -8,7 +8,7 @@ namespace Api_Event.Interface
         void Atualizar(Guid Id, TipoDeUsuario tipoDeUsuario);
         void Deletar(Guid Id);
         TipoDeUsuario BuscarPorId(Guid Id);
-        List<TipoDeEvento> Listar();
+        List<TipoDeUsuario> Listar();
 
 
 

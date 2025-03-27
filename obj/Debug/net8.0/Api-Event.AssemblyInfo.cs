@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Api-Event")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+faf534c4b077b8c218affaab99312b79478ae039")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9b8f5048d018c58aa7db51bd1e424153b512c77")]
 [assembly: System.Reflection.AssemblyProductAttribute("Api-Event")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Api-Event")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

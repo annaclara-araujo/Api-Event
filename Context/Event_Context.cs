@@ -13,7 +13,7 @@ namespace Api_Event.Context
 
         public DbSet <Usuario> Usuario { get; set; }
         public DbSet <Evento> Evento { get; set; }
-        public DbSet <TipoDeEvento> TipoDeEventos { get; set; }
+        public DbSet <TipoDeEvento> TipoDeEvento { get; set; }
         public DbSet<TipoDeUsuario> TipoDeUsuario { get; set; }
         public DbSet <Instituicao> Instituicao { get; set; }
         public DbSet <ComentarioEvento> ComentarioEvento { get; set; }

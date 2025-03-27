@@ -18,9 +18,12 @@ namespace Api_Event.Controllers
             _comentarioEventoRepository = comentarioEventoRepository;
         } 
 
-
+        /// <summary>
+        /// Endpoint para cadastrar comentario
+        /// </summary>
+        /// <param name="comentario"></param>
+        /// <returns></returns>
         [HttpPost]
-
         public ActionResult Post(ComentarioEvento comentario)
         {
             try
@@ -34,12 +37,14 @@ namespace Api_Event.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Endpoint para deletar comentario
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
-
         public IActionResult Delete(Guid id)
         {
-
             try
             {
                 _comentarioEventoRepository.Deletar(id);
@@ -50,10 +55,12 @@ namespace Api_Event.Controllers
             {
                 throw;
             }
-
         }
 
-
+        /// <summary>
+        /// Endpoint para listar os comentarios
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet]
         public IActionResult Get()
@@ -69,7 +76,12 @@ namespace Api_Event.Controllers
             }
         }
 
-      
+        /// <summary>
+        /// Endpoint para buscar comentario por Id do usuario
+        /// </summary>
+        /// <param name="UsuarioID"></param>
+        /// <param name="EventoID"></param>
+        /// <returns></returns>
         [HttpGet("BuscarPorIdUsuario/{UsuarioID},{EventoID}")]
         public IActionResult GetById(Guid UsuarioID, Guid EventoID)
         {

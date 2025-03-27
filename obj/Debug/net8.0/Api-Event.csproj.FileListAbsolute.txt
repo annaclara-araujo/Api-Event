@@ -174,3 +174,5 @@ C:\Users\43676443837\Desktop\Api-Event\obj\Debug\net8.0\refint\Api-Event.dll
 C:\Users\43676443837\Desktop\Api-Event\obj\Debug\net8.0\Api-Event.pdb
 C:\Users\43676443837\Desktop\Api-Event\obj\Debug\net8.0\Api-Event.genruntimeconfig.cache
 C:\Users\43676443837\Desktop\Api-Event\obj\Debug\net8.0\ref\Api-Event.dll
+C:\Users\43676443837\Desktop\Api-Event\bin\Debug\net8.0\Api-Event.xml
+C:\Users\43676443837\Desktop\Api-Event\obj\Debug\net8.0\Api-Event.xml

@@ -10,7 +10,7 @@ namespace Api_Event.Repositories
 
         private readonly Event_Context _context;
 
-        public TipoDeEventoRepository (Event_Context context)
+        public TipoDeEventoRepository(Event_Context context)
         {
             _context = context;
         }
@@ -22,7 +22,7 @@ namespace Api_Event.Repositories
 
             try
             {
-                TipoDeEvento tipoEventoBuscado = _context.TipoDeEventos.Find(Id)!;
+                TipoDeEvento tipoEventoBuscado = _context.TipoDeEvento.Find(Id)!;
 
                 if (tipoEventoBuscado != null)
                 {
@@ -45,7 +45,7 @@ namespace Api_Event.Repositories
 
             try
             {
-                TipoDeEvento tipoDeEvento = _context.TipoDeEventos.Find(Id)!;
+                TipoDeEvento tipoDeEvento = _context.TipoDeEvento.Find(Id)!;
                 return tipoDeEvento;
             }
             catch (Exception)
@@ -61,7 +61,7 @@ namespace Api_Event.Repositories
         {
             try
             {
-                _context.TipoDeEventos.Add(novoTipoDeEvento);
+                _context.TipoDeEvento.Add(novoTipoDeEvento);
 
                 _context.SaveChanges();
             }
@@ -78,10 +78,10 @@ namespace Api_Event.Repositories
         {
             try
             {
-                TipoDeEvento eventoBuscado = _context.TipoDeEventos.Find(Id)!;
+                TipoDeEvento eventoBuscado = _context.TipoDeEvento.Find(Id)!;
                 if (eventoBuscado != null)
-                { 
-                    _context.Remove(eventoBuscado);
+                {
+                    _context.TipoDeEvento.Remove(eventoBuscado);
                 }
                 _context.SaveChanges();
             }
@@ -98,16 +98,14 @@ namespace Api_Event.Repositories
         {
             try
             {
-                List<TipoDeEvento> listaTipoDeEventos = _context.TipoDeEventos.ToList();
-                return listaTipoDeEventos;
+                return _context.TipoDeEvento
+                    .OrderBy(tp => tp.TituloTipoEvento)
+                    .ToList();
             }
             catch (Exception)
             {
-
                 throw;
             }
-
         }
-
     }
 }

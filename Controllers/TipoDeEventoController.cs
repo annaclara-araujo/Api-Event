@@ -18,7 +18,11 @@ namespace Api_Event.Controllers
             _tipoDeEventoRepository = tipoDeEventoRepository;
         }
 
-        // Metodo de Cadastrar
+        /// <summary>
+        /// Endpoint para cadastrar novo tipo de evento
+        /// </summary>
+        /// <param name="novoTipoDeEvento"></param>
+        /// <returns></returns>
         [HttpPost]
         public IActionResult Post(TipoDeEvento novoTipoDeEvento)
         {
@@ -33,7 +37,12 @@ namespace Api_Event.Controllers
             }
         }
 
-        // Metodo Atualizar
+        /// <summary>
+        /// Endpoint para atualizar tipo de evento 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tipoDeEvento"></param>
+        /// <returns></returns>
        
         [HttpPut("{id}")]
 
@@ -52,10 +61,12 @@ namespace Api_Event.Controllers
 
         }
 
-        //Metodo Deletar
-
-       
-        [HttpDelete("{id}")]
+        /// <summary>
+        /// Endpoint para deletar tipo de evento
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpDelete("{Id}")]
         public IActionResult Delete(Guid Id)
         {
             try
@@ -68,7 +79,6 @@ namespace Api_Event.Controllers
 
                 throw;
             }
-        
         }
 
         [HttpGet("BuscarPorId/{id}")]
@@ -84,12 +94,14 @@ namespace Api_Event.Controllers
                 return BadRequest(e.Message);
 
             }
-
         }
 
-
+        /// <summary>
+        /// endpoint para Listar tipo de evento
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public IActionResult Get()
+        public ActionResult Get()
         {
             try
             {
@@ -97,18 +109,9 @@ namespace Api_Event.Controllers
             }
             catch (Exception e)
             {
+
                 return BadRequest(e.Message);
             }
         }
-
-
-
-
-
-
-
-
-
-
     }
 }
